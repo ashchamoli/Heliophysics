@@ -13,11 +13,16 @@ clean_data= np.nan_to_num(solar_map.data)
 #calculating brightness cutoff point separating active region from background plasma
 otsu_thresh = fil.threshold_otsu(clean_data)
 print(f"calculaated mathematical brightness cutoff point:{otsu_thresh:2f} DN")
-
+manual_thresh=8000
+print(f"manual active region cutoff point: {manual_thresh} DN")
 #create binary mask(true where pixels are bright, else false)
-active_mask =clean_data > otsu_thresh
+active_mask =clean_data > manual_thresh
 #clean out camera noise
 refined_mask = opening(active_mask, disk(2))
+#calculatig mean and standard deviation
+img_mean= np.mean(clean_data)
+img_std= np.std(clean_data)
+otsu_thresh= img_mean+(4*img_std)
 
 #plot 
 fig= plt.figure(figsize=(8,8))
