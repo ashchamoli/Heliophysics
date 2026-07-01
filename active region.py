@@ -12,7 +12,6 @@ smap = sunpy.map.Map(selected_file)
 original_data = smap.data.copy()
 
 #  Flat-field correction  
-# For example: corrected_data = (original_data - dark_frame) / flat_frame
 corrected_data = original_data
 
 # Normalize values
