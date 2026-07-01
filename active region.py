@@ -13,11 +13,9 @@ original_data = smap.data.copy()
 
 #  Flat-field correction  
 # For example: corrected_data = (original_data - dark_frame) / flat_frame
-corrected_data = original_data # Using original data for now
+corrected_data = original_data
 
-#  Normalise intensity values 
-# Replace NaNs with a reasonable value (e.g., mean) for normalization or remove them
-# For display, we can just mask them, but for numerical operations, filling is better.
+# Normalize values
 data_for_norm = np.nan_to_num(corrected_data, nan=np.nanmean(corrected_data))
 
 # Normalize data to 0-1 range
