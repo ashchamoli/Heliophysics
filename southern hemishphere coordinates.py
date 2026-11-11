@@ -16,7 +16,7 @@ for i, centroid_tuple in enumerate(tracked_centroids_subset):
         # centroid_tuple is (row, col)
         world_coords = smap.pixel_to_world(centroid_tuple[1] * u.pixel, centroid_tuple[0] * u.pixel)
 
-        # Explicitly convert to HeliographicStonyhurst frame to ensure lat/lon access
+        # convert to HeliographicStonyhurst frame to ensure lat/lon access
         heliographic_coord_stonyhurst = world_coords.heliographic_stonyhurst
 
         heliographic_coordinates.append({
