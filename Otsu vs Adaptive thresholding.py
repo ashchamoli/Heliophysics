@@ -31,7 +31,7 @@ adap_counts, adap_area= evaluate_mask(mask_adaptive, "Adaptive")
 
 #Visualising and comparision matrix
 fig, axes= plt.subplots(1,3, figsize=(15,5))
-axes[0].imshow(img, cmap='gray', origin='lower') # Changed cmap to 'gray' for intensity images
+axes[0].imshow(img, cmap='gray', origin='lower') 
 axes[0].set_title("Original Aditya-L1 Image")
 axes[0].axis('off')
 
