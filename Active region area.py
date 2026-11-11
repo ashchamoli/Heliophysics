@@ -12,10 +12,10 @@ import os # Import os to check directory contents
 
 print("Starting processing for temporal evolution of active region area.")
 
-# Debugging: List contents of /content/ to verify files are present
+# Debugg
 print(f"Contents of /content/ at DffFofWddlTq execution: {os.listdir('/content/')}")
 
-# Robustly load all fits files from the content directory that match the pattern
+# load all fits files from the content directory that match the pattern
 # Use os.listdir to get all files and then filter explicitly
 all_content_files = os.listdir("/content/")
 fits_files = sorted([f"/content/{fname}" for fname in all_content_files if fname.startswith("SUT_T24_") and fname.endswith(".fits")])
@@ -27,7 +27,7 @@ if not fits_files:
 else:
     print(f"Processing {len(fits_files)} FITS files...")
     timestamps = []
-    area_km2 = [] # Initialize area_km2 as an empty list
+    area_km2 = [] 
     target_centroid= None
     distance_threshold= 400
 
@@ -44,7 +44,7 @@ else:
             cdelt1 = header.get('CDELT1', 1.0)
             cdelt2 = header.get('CDELT2', 1.0)
 
-            # Preprocess and threshold (using Otsu as a robust method, or keep percentile)
+            # Preprocess and threshold
             img_normalised = exposure.rescale_intensity(data, out_range=(0, 1))
             threshold = np.percentile(img_normalised, 95) # Using 95th percentile as previously discussed
             binary_mask = img_normalised > threshold
@@ -87,7 +87,7 @@ else:
             timestamps.append(time_obs)
             area_km2.append(area_km)
 
-    # Plotting the time-series evolution
+    # Plotting 
     if timestamps:
         plt.figure(figsize=(10, 5))
         plt.plot(timestamps, area_km2, marker='o', linestyle='-', color='crimson')
