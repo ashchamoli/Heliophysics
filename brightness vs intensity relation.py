@@ -2,7 +2,6 @@ import re
 from datetime import datetime
 import os
 
-# Get lists of FITS and NetCDF files in the /content/ directory
 all_content_files = os.listdir("/content/")
 fits_files_raw = sorted([f for f in all_content_files if f.startswith("SUT_T24_") and f.endswith(".fits")])
 nc_files_raw = sorted([f for f in all_content_files if f.startswith("L2_AL1_MAG_") and f.endswith(".nc")])
@@ -33,7 +32,7 @@ if not common_dates:
 else:
     print(f"Found common dates for correlation: {common_dates}")
 
-    # Initialize lists to store results for correlation
+    # Make lists to store results for correlation
     correlation_dates = []
     avg_brightness_list = []
     avg_magnetic_field_list = []
@@ -94,7 +93,7 @@ else:
             continue
 
     # Perform time-series correlation and plotting
-    if len(correlation_dates) >= 2: # Need at least two data points for correlation
+    if len(correlation_dates) >= 2:
         # Convert dates to datetime objects for plotting
         plot_dates = [datetime.strptime(d, '%Y-%m-%d') for d in correlation_dates]
 
@@ -105,7 +104,7 @@ else:
         print(f"\nTime Series Pearson r (Average Brightness vs. Average Magnetic Field): {pearson_r:.3f}")
         print(f"Time Series Spearman r (Average Brightness vs. Average Magnetic Field): {spearman_r:.3f}")
 
-        # Plotting the time-series evolution of both quantities
+        # Plot the time-series evolution of both quantities
         plt.figure(figsize=(12, 8))
 
         plt.subplot(2, 1, 1) # Two subplots, 1 column, first plot
